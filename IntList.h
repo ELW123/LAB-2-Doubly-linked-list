@@ -1,3 +1,11 @@
+/* Collaborated with: 
+	Ethan Wan, 
+	Ethan Wan's prior program assignments in CS 10B, 
+	Mariam Golwalla,  
+	zybooks.com - CS 10C and CS 10B, 
+	github.com to host our code
+*/
+
 #ifndef INTLIST_H
 #define INTLIST_H
 

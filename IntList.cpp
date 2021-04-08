@@ -1,8 +1,15 @@
+/* 	Collaborated with: 
+	Ethan Wan, 
+	Ethan Wan's prior program assignments in CS 10B, 
+	Mariam Golwalla,  
+	zybooks.com - CS 10C and CS 10B, 
+	github.com to host our code
+*/
+
 #include "IntList.h"
 
 using namespace std;
 
-// works
 IntList::IntList () {
 	dummyHead = new IntNode(0);
 	dummyTail = new IntNode(0);
@@ -14,7 +21,6 @@ IntList::IntList () {
 	dummyTail->next = nullptr;
 }
 
-// works
 IntList::~IntList() {
     IntNode* curr = dummyHead;
 	while (curr != nullptr) {
@@ -24,7 +30,6 @@ IntList::~IntList() {
     }
 }
 
-// works
 bool IntList::empty() const{
 	if(dummyHead->next == dummyTail)
         return true;
@@ -32,7 +37,6 @@ bool IntList::empty() const{
     return false;
 }
 
-// works
 void IntList::pop_front(){
 	IntNode* first = dummyHead->next;
 
@@ -43,7 +47,6 @@ void IntList::pop_front(){
 	}
 }
 
-// works
 void IntList::push_front(int value){
 	IntNode* temp = new IntNode(value);
 	temp->prev = dummyHead;
@@ -52,7 +55,6 @@ void IntList::push_front(int value){
 	dummyHead->next = temp;
 }
 
-// not sure
 void IntList::push_back(int value){
 	IntNode* temp = new IntNode(value);
 	temp->next = dummyTail;
@@ -61,7 +63,6 @@ void IntList::push_back(int value){
 	dummyTail->prev = temp;
 }
 
-// not sure
 void IntList::pop_back(){
 	IntNode* last = dummyTail->prev;
 
@@ -72,33 +73,34 @@ void IntList::pop_back(){
 	}
 }
 
-// works
 ostream & operator<<(ostream &out, const IntList &rhs) {
 	if(rhs.empty())
       return out;
 
     IntNode* curr = rhs.dummyHead->next;
-
-	for (int i = 1; curr != rhs.dummyTail; curr = curr->next) {
-		if (i < 2) // first node output
+	
+	while(curr != rhs.dummyTail) {
+        if (curr->next == rhs.dummyTail) {
 			out << curr->data;
-		else // succeeding node outputs
+			return out;
+		} else {
+			out << curr->data << " ";
+		}
+
+		curr = curr->next;
+    } 
+
+    return out;
+
+	/* // old code
+	for (int i = 1; curr != rhs.dummyTail; curr = curr->next) {
+		if (i < 2)
+			out << curr->data;
+		else
 			out << " " << curr->data;
 		
 		i++;
-	}
-
-	/*
-	while(curr != rhs.dummyTail) {
-        out << curr->data;
-
-		if (curr->next = rhs.dummyTail)
-			out << " ";
-
-        curr = curr->next;
-    } */
-    
-    return out;
+	} */
 }
 
 void IntList::printReverse() const{
@@ -106,12 +108,6 @@ void IntList::printReverse() const{
 		return;
 
 	IntNode* curr = dummyTail->prev;
-
-	/*
-	if (dummyTail->prev == dummyHead) {
-		cout << curr->data;
-		return;
-	} */
 
 	while (curr != dummyHead) {
 		if (curr->prev == dummyHead) {
