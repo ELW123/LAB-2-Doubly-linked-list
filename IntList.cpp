@@ -2,7 +2,7 @@
 
 using namespace std;
 
-// should work
+// works
 IntList::IntList () {
 	dummyHead = new IntNode(0);
 	dummyTail = new IntNode(0);
@@ -14,6 +14,7 @@ IntList::IntList () {
 	dummyTail->next = nullptr;
 }
 
+// works
 IntList::~IntList() {
     IntNode* curr = dummyHead;
 	while (curr != nullptr) {
@@ -23,7 +24,7 @@ IntList::~IntList() {
     }
 }
 
-// should work
+// works
 bool IntList::empty() const{
 	if(dummyHead->next == dummyTail)
         return true;
@@ -31,6 +32,7 @@ bool IntList::empty() const{
     return false;
 }
 
+// works
 void IntList::pop_front(){
 	IntNode* first = dummyHead->next;
 
@@ -41,6 +43,7 @@ void IntList::pop_front(){
 	}
 }
 
+// works
 void IntList::push_front(int value){
 	IntNode* temp = new IntNode(value);
 	temp->prev = dummyHead;
@@ -49,14 +52,27 @@ void IntList::push_front(int value){
 	dummyHead->next = temp;
 }
 
+// not sure
 void IntList::push_back(int value){
-	
+	IntNode* temp = new IntNode(value);
+	temp->next = dummyTail;
+	temp->prev = dummyTail->prev;
+	temp->prev->next = temp;
+	dummyTail->prev = temp;
 }
 
+// not sure
 void IntList::pop_back(){
+	IntNode* last = dummyTail->prev;
 
+	if (last != dummyHead) {
+		dummyTail->prev = last->prev;
+		last->prev->next = dummyTail;
+		delete last;
+	}
 }
 
+// works
 ostream & operator<<(ostream &out, const IntList &rhs) {
 	if(rhs.empty())
       return out;
@@ -75,6 +91,9 @@ ostream & operator<<(ostream &out, const IntList &rhs) {
 	/*
 	while(curr != rhs.dummyTail) {
         out << curr->data;
+
+		if (curr->next = rhs.dummyTail)
+			out << " ";
 
         curr = curr->next;
     } */
