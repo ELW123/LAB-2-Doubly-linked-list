@@ -102,5 +102,25 @@ ostream & operator<<(ostream &out, const IntList &rhs) {
 }
 
 void IntList::printReverse() const{
+	if(empty())
+		return;
 
+	IntNode* curr = dummyTail->prev;
+
+	/*
+	if (dummyTail->prev == dummyHead) {
+		cout << curr->data;
+		return;
+	} */
+
+	while (curr != dummyHead) {
+		if (curr->prev == dummyHead) {
+			cout << curr->data;
+			return;
+		} else {
+			cout << curr->data << " ";
+		}
+
+		curr = curr->prev;
+	}
 } 
