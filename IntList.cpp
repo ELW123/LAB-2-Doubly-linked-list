@@ -3,20 +3,39 @@
 
 using namespace std;
 
+// should work
 IntList::IntList () {
-	dummyhead = 0;
-	dummytail = 0;
+	dummyHead = nullptr;
+	dummyTail = nullptr;
 }
 
 IntList::~IntList() {
-	
+	while (!empty()) {
+        pop_front();
+    }
 }
 
-void IntList::push_front(int value){
-	
+// should work
+bool IntList::empty() const{
+	if(dummyHead->next == nullptr && dummyTail->prev == nullptr)
+        return true;
+
+    return false;
 }
 
 void IntList::pop_front(){
+	if (!empty()) {
+        IntNode* temp = dummyHead->next;
+        dummyHead->next = dummyHead->next->next;
+        delete temp;
+    }
+
+    if(dummyHead->next == nullptr)
+        dummyTail->prev = nullptr;
+
+}
+
+void IntList::push_front(int value){
 	
 }
 
@@ -25,15 +44,24 @@ void IntList::push_back(int value){
 }
 
 void IntList::pop_back(){
-	
+
 }
 
-bool IntList::empty() const{
-}
+ostream & operator<<(ostream &out, const IntList &rhs) {
+	if(rhs.empty())
+      return out;
 
-ostream IntList:: & operator<<(ostream &out, const IntList &rhs){ // i don't know if this is defined properly
-	
+    IntNode* curr = rhs.dummyHead->next;
+    out << curr->data;
+
+	while(curr->next != nullptr) {
+            curr = curr->next;
+            out << ' ' << curr->data;
+        }
+    
+    return out;
 }
 
 void IntList::printReverse() const{
-}
+
+} 
