@@ -57,18 +57,27 @@ void IntList::pop_back(){
 
 }
 
-// still needs a bit of tuning
 ostream & operator<<(ostream &out, const IntList &rhs) {
 	if(rhs.empty())
       return out;
 
     IntNode* curr = rhs.dummyHead->next;
-    out << curr->data;
 
+	for (int i = 1; curr != rhs.dummyTail; curr = curr->next) {
+		if (i < 2) // first node output
+			out << curr->data;
+		else // succeeding node outputs
+			out << " " << curr->data;
+		
+		i++;
+	}
+
+	/*
 	while(curr != rhs.dummyTail) {
-            out << ' ' << curr->data;
-            curr = curr->next;
-        }
+        out << curr->data;
+
+        curr = curr->next;
+    } */
     
     return out;
 }
