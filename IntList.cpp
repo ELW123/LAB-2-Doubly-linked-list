@@ -32,9 +32,9 @@ IntList::~IntList() {
 
 bool IntList::empty() const{
 	if(dummyHead->next == dummyTail)
-        return true;
+        	return true;
 
-    return false;
+	return false;
 }
 
 void IntList::pop_front(){
@@ -75,32 +75,22 @@ void IntList::pop_back(){
 
 ostream & operator<<(ostream &out, const IntList &rhs) {
 	if(rhs.empty())
-      return out;
+      	  return out;
 
     IntNode* curr = rhs.dummyHead->next;
 	
 	while(curr != rhs.dummyTail) {
-        if (curr->next == rhs.dummyTail) {
+        	if (curr->next == rhs.dummyTail) {
 			out << curr->data;
 			return out;
 		} else {
-			out << curr->data << " ";
+		out << curr->data << " ";
 		}
 
-		curr = curr->next;
-    } 
+	curr = curr->next;
+        } 
 
     return out;
-
-	/* // old code
-	for (int i = 1; curr != rhs.dummyTail; curr = curr->next) {
-		if (i < 2)
-			out << curr->data;
-		else
-			out << " " << curr->data;
-		
-		i++;
-	} */
 }
 
 void IntList::printReverse() const{
