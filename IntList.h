@@ -24,8 +24,8 @@ class IntList {
     void printReverse() const; 
 
  private:
-   IntNode *dummyhead;
-   IntNode *dummytail; 
+   IntNode *dummyHead;
+   IntNode *dummyTail; 
 };
 
 #endif
